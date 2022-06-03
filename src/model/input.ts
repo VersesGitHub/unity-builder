@@ -61,17 +61,6 @@ class Input {
       return '';
     }
   }
-  static get cloudRunnerBuilderPlatform() {
-    const input = Input.getInput('cloudRunnerBuilderPlatform');
-    if (input) {
-      return input;
-    }
-    if (Input.cloudRunnerCluster !== 'local') {
-      return 'linux';
-    }
-
-    return;
-  }
 
   static get gitSha() {
     if (Input.getInput(`GITHUB_SHA`)) {

@@ -4,6 +4,7 @@ import CloudRunnerEnvironmentVariable from './cloud-runner-environment-variable'
 import { CloudRunnerBuildCommandProcessor } from './cloud-runner-build-command-process';
 import CloudRunnerSecret from './cloud-runner-secret';
 import CloudRunnerQueryOverride from './cloud-runner-query-override';
+import CloudRunnerOptions from '../cloud-runner-options';
 
 export class TaskParameterSerializer {
   public static readBuildEnvironmentVariables(): CloudRunnerEnvironmentVariable[] {
@@ -61,7 +62,7 @@ export class TaskParameterSerializer {
   }
 
   private static readInput(array: any[]) {
-    const input = Object.getOwnPropertyNames(Input);
+    const input = [...Object.getOwnPropertyNames(Input), ...Object.getOwnPropertyNames(CloudRunnerOptions)];
     for (const element of input) {
       if (typeof Input[element] !== 'function' && array.filter((x) => x.name === element).length === 0) {
         array.push({

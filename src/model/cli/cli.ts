@@ -9,6 +9,7 @@ import { AwsCliCommands } from '../cloud-runner/providers/aws/commands/aws-cli-c
 import { Caching } from '../cloud-runner/remote-client/caching';
 import { LfsHashing } from '../cloud-runner/services/lfs-hashing';
 import { RemoteClient } from '../cloud-runner/remote-client';
+import CloudRunnerOptions from '../cloud-runner/cloud-runner-options';
 
 export class Cli {
   public static options;
@@ -33,7 +34,7 @@ export class Cli {
     CliFunctionsRepository.PushCliFunctionSource(RemoteClient);
     const program = new Command();
     program.version('0.0.1');
-    const properties = Object.getOwnPropertyNames(Input);
+    const properties = [...Object.getOwnPropertyNames(Input), ...Object.getOwnPropertyNames(CloudRunnerOptions)];
     const actionYamlReader: ActionYamlReader = new ActionYamlReader();
     for (const element of properties) {
       program.option(`--${element} <${element}>`, actionYamlReader.GetActionYamlValue(element));
@@ -71,7 +72,7 @@ export class Cli {
   private static logInput() {
     core.info(`\n`);
     core.info(`INPUT:`);
-    const properties = Object.getOwnPropertyNames(Input);
+    const properties = [...Object.getOwnPropertyNames(Input), ...Object.getOwnPropertyNames(CloudRunnerOptions)];
     for (const element of properties) {
       if (
         Input[element] !== undefined &&
