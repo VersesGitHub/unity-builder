@@ -15,7 +15,7 @@ export const mockGetVersionDescription = jest.fn().mockResolvedValue('1.2-3-g123
 export const mockIsDirty = jest.fn().mockResolvedValue(false);
 export const mockGetTag = jest.fn().mockResolvedValue('v1.0');
 export const mockHasAnyVersionTags = jest.fn().mockResolvedValue(true);
-export const mockGetTotalNumberOfCommits = jest.fn().mockResolvedValue(3);
+export const mockGetTotalNumberOfCommits = jest.fn().mockResolvedValue(1);
 export const mockGit = jest.fn().mockImplementation(() => {});
 
 export default {

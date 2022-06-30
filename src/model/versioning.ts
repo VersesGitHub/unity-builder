@@ -128,7 +128,7 @@ export default class Versioning {
     }
 
     if (!(await this.hasAnyVersionTags())) {
-      const version = `0.0.${await this.getTotalNumberOfCommits()}`;
+      const version = `0.0.1`;
       core.info(`Generated version ${version} (no version tags found).`);
 
       return version;
@@ -147,7 +147,7 @@ export default class Versioning {
       return `${threeDigitVersion}`;
     }
 
-    const version = `0.0.${await this.getTotalNumberOfCommits()}`;
+    const version = `0.0.1`;
     core.info(`Generated version ${version} (semantic version couldn't be determined).`);
 
     return version;
@@ -292,7 +292,7 @@ export default class Versioning {
    * Note: HEAD should not be used, as it may be detached, resulting in an additional count.
    */
   static async getTotalNumberOfCommits() {
-    const numberOfCommitsAsString = await this.git(['rev-list', '--count', this.sha]);
+    const numberOfCommitsAsString = "1";
 
     return Number.parseInt(numberOfCommitsAsString, 10);
   }

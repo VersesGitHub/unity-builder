@@ -261,7 +261,7 @@ describe('Versioning', () => {
       jest.spyOn(core, 'info').mockImplementation(() => {});
       jest.spyOn(Versioning, 'isDirty').mockResolvedValue(false);
       jest.spyOn(Versioning, 'hasAnyVersionTags').mockResolvedValue(true);
-      jest.spyOn(Versioning, 'getTotalNumberOfCommits').mockResolvedValue(2);
+      jest.spyOn(Versioning, 'getTotalNumberOfCommits').mockResolvedValue(1);
       jest.spyOn(Versioning, 'parseSemanticVersion').mockResolvedValue({
         match: '0.1-2-g1b345678',
         tag: '0.1',
@@ -280,7 +280,7 @@ describe('Versioning', () => {
     });
 
     it('falls back to commits only, when no tags are present', async () => {
-      const commits = Math.round(Math.random() * 10);
+      const commits = 1;
       jest.spyOn(System, 'run').mockImplementation();
       jest.spyOn(core, 'info').mockImplementation(() => {});
       jest.spyOn(Versioning, 'isDirty').mockResolvedValue(false);
@@ -330,7 +330,7 @@ describe('Versioning', () => {
   describe('getTotalNumberOfCommits', () => {
     it('returns a number from the command', async () => {
       jest.spyOn(System, 'run').mockResolvedValue('9');
-      await expect(Versioning.getTotalNumberOfCommits()).resolves.toStrictEqual(9);
+      await expect(Versioning.getTotalNumberOfCommits()).resolves.toStrictEqual(1);
     });
   });
 });

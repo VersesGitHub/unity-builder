@@ -21,7 +21,7 @@ namespace UnityBuilderAction.Versioning
         version = GetSemanticCommitVersion();
         Console.WriteLine("Repository has a valid version tag.");
       } else {
-        version = $"0.0.{GetTotalNumberOfCommits()}";
+        version = $"0.0.1";
         Console.WriteLine("Repository does not have tags to base the version on.");
       }
 
@@ -52,7 +52,7 @@ namespace UnityBuilderAction.Versioning
     /// </summary>
     static int GetTotalNumberOfCommits()
     {
-      string numberOfCommitsAsString = Run(@"git rev-list --count HEAD");
+      string numberOfCommitsAsString = Run(@"echo 1");
 
       return int.Parse(numberOfCommitsAsString);
     }
